@@ -857,9 +857,9 @@ const messages = {
           refresh: "Recarregar página",
           notRegister: "Sem notificações",
           greeting: {
-						hello: "Olá",
-						welcome: "Bem vindo a",
-						active: "Ativo até",
+						hello: "Bem vindo",
+						welcome: "Empresa:",
+						active: "Validade:",
 					},
           user: {
             profile: "Perfil",

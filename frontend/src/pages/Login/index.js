@@ -15,6 +15,7 @@ import { i18n } from "../../translate/i18n";
 import { nomeEmpresa } from "../../../package.json";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import logo from "../../assets/logo.png";
+import logobrti from "../../assets/brti.png";
 import {LanguageOutlined} from "@material-ui/icons";
 import {IconButton, Menu, MenuItem} from "@material-ui/core";
 import LanguageControl from "../../components/LanguageControl";
@@ -147,6 +148,7 @@ const Login = () => {
 			<CssBaseline/>
 			<div className={classes.paper}>
 				<div>
+					<img style={{ margin: "0 auto", width: "70%" }} src={logobrti} alt="Whats" />
 					<img style={{ margin: "0 auto", width: "70%" }} src={logo} alt="Whats" />
 				</div>
 				{/*<Typography component="h1" variant="h5">
@@ -197,7 +199,7 @@ const Login = () => {
 					>
 						{i18n.t("login.buttons.submit")}
 					</Button>
-					{ <Grid container>
+				{/*	{ <Grid container>
 						<Grid item>
 							<Link
 								href="#"
@@ -208,9 +210,15 @@ const Login = () => {
 								{i18n.t("login.buttons.register")}
 							</Link>
 						</Grid>
-					</Grid> }
+					</Grid> } */}
 				</form>
-			
+	
+				<IconButton color="primary"
+						onClick={() => openInNewTab(`https://wa.me/5518996060568`)}>
+						 <WhatsAppIcon style={{ color: "#3e5f3a" }} />
+					</IconButton>
+		{/*<Typography variant="caption" className={classes.supportText}><b>Entre em contato!</b></Typography>*/}
+
 			</div>
 			<Box mt={8}><Copyright /></Box>
 		</Container>

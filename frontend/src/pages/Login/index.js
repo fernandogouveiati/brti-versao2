@@ -212,13 +212,6 @@ const Login = () => {
 						</Grid>
 					</Grid> } */}
 				</form>
-	
-				<IconButton color="primary"
-						onClick={() => openInNewTab(`https://wa.me/5518996060568`)}>
-						 <WhatsAppIcon style={{ color: "#3e5f3a" }} />
-					</IconButton>
-		{/*<Typography variant="caption" className={classes.supportText}><b>Entre em contato!</b></Typography>*/}
-
 			</div>
 			<Box mt={8}><Copyright /></Box>
 		</Container>

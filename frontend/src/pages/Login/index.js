@@ -10,14 +10,16 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import {InputAdornment,	IconButton} from '@material-ui/core';
-import WhatsAppIcon from '@material-ui/icons/WhatsApp';
-
+import { versionSystem } from "../../../package.json";
 import { i18n } from "../../translate/i18n";
-
+import { nomeEmpresa } from "../../../package.json";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import logo from "../../assets/logo.png";
 import logobrti from "../../assets/brti.png";
+import {LanguageOutlined} from "@material-ui/icons";
+import {IconButton, Menu, MenuItem} from "@material-ui/core";
+import LanguageControl from "../../components/LanguageControl";
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 
 
 const Copyright = () => {
@@ -25,7 +27,7 @@ const Copyright = () => {
 		<Typography variant="body2" color="primary" align="center">
 			{"Copyright "}
  			<Link color="primary" href="#">
- 				PLW
+ 				{ nomeEmpresa } - v { versionSystem }
  			</Link>{" "}
  			{new Date().getFullYear()}
  			{"."}
@@ -37,8 +39,8 @@ const useStyles = makeStyles(theme => ({
 	root: {
 		width: "100vw",
 		height: "100vh",
-		//background: "linear-gradient(to right, #586CFA , #586CFA , #4C21A7)", //cor de fundo 
-		//backgroundImage: `url(${fundofoto})`, // Substituir o background no assets
+		//background: "linear-gradient(to right, #682EE3 , #682EE3 , #682EE3)",
+		//backgroundImage: "url(https://i.imgur.com/CGby9tN.png)",
 		backgroundColor: theme.palette.primary.main,
 		backgroundRepeat: "no-repeat",
 		backgroundSize: "100% 100%",
@@ -48,9 +50,10 @@ const useStyles = makeStyles(theme => ({
 		alignItems: "center",
 		justifyContent: "center",
 		textAlign: "center",
+		position: "relative"
 	},
 	paper: {
-		backgroundColor: theme.palette.login, //DARK MODE PLW DESIGN//
+		backgroundColor: theme.palette.login,
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
@@ -70,6 +73,12 @@ const useStyles = makeStyles(theme => ({
 	},
 	powered: {
 		color: "white"
+	},
+	languageControl: {
+		position: "absolute",
+		top: 0,
+		left: 0,
+		paddingLeft: 15
 	}
 }));
 
@@ -77,6 +86,10 @@ const Login = () => {
 	const classes = useStyles();
 
 	const [user, setUser] = useState({ email: "", password: "" });
+
+	// Languages
+	const [anchorElLanguage, setAnchorElLanguage] = useState(null);
+	const [menuLanguageOpen, setMenuLanguageOpen] = useState(false);
 
 	const { handleLogin } = useContext(AuthContext);
 
@@ -89,18 +102,59 @@ const Login = () => {
 		handleLogin(user);
 	};
 
+	const handlemenuLanguage = ( event ) => {
+		setAnchorElLanguage(event.currentTarget);
+		setMenuLanguageOpen( true );
+	}
+
+	const handleCloseMenuLanguage = (  ) => {
+		setAnchorElLanguage(null);
+		setMenuLanguageOpen(false);
+	}
+	
 	const openInNewTab = url => {
-		window.open(url, '_blank', 'noopener,noreferrer');
+	window.open(url, '_blank', 'noopener,noreferrer');
 	};
 
 	return (
 		<div className={classes.root}>
+		<div className={classes.languageControl}>
+			<IconButton edge="start">
+				<LanguageOutlined
+					aria-label="account of current user"
+					aria-controls="menu-appbar"
+					aria-haspopup="true"
+					onClick={handlemenuLanguage}
+					variant="contained"
+					style={{ color: "white",marginRight:10 }}
+				/>
+			</IconButton>
+			<Menu
+				id="menu-appbar-language"
+				anchorEl={anchorElLanguage}
+				getContentAnchorEl={null}
+				anchorOrigin={{
+					vertical: "bottom",
+					horizontal: "right",
+				}}
+				transformOrigin={{
+					vertical: "top",
+					horizontal: "right",
+				}}
+				open={menuLanguageOpen}
+				onClose={handleCloseMenuLanguage}
+			>
+				<MenuItem>
+					<LanguageControl />
+				</MenuItem>
+			</Menu>
+		</div>
 		<Container component="main" maxWidth="xs">
 			<CssBaseline/>
 			<div className={classes.paper}>
 				<div>
-					<center><img style={{ margin: "0 auto", width: "70%" }} src={logobrti} alt="Logologin" /></center>
-					<center><img style={{ margin: "0 auto", width: "70%" }} src={logo} alt="Logologin" /></center>
+					<img style={{ margin: "0 auto", width: "70%" }} src={logobrti} alt="Whats" />
+					<img style={{ margin: "0 auto", width: "70%" }} src={logo} alt="Whats" />
 				</div>
 				{/*<Typography component="h1" variant="h5">
 					{i18n.t("login.title")}
@@ -132,7 +186,16 @@ const Login = () => {
 						onChange={handleChangeInput}
 						autoComplete="current-password"
 					/>
-						<Button
+					
+					{/* <Grid container justify="flex-end">
+					  <Grid item xs={6} style={{ textAlign: "right" }}>
+						<Link component={RouterLink} to="/forgetpsw" variant="body2">
+						  Esqueceu sua senha?
+						</Link>
+					  </Grid>
+					</Grid>*/}
+					
+					<Button
 						type="submit"
 						fullWidth
 						variant="contained"
@@ -141,43 +204,30 @@ const Login = () => {
 					>
 						{i18n.t("login.buttons.submit")}
 					</Button>
-					<Grid container spacing={2}>
-				{/*	<Grid item xs={12}>
-						<Link
-						href="#"
-						variant="body2"
-						component={RouterLink}
-						to="/forgetpsw"
-						>
-						{i18n.t("Esqueci minha senha")}
-						</Link>
-					</Grid>*/}
-				{/*	<Grid item xs={12}>
-						<Link
-						href="#"
-						variant="body2"
-						component={RouterLink}
-						to="/signup"
-						>
-						{i18n.t("login.buttons.register")}
-						</Link>
-					</Grid>*/}
-					</Grid>
-
+					{/* <Grid container>
+						<Grid item>
+							<Link
+								href="#"
+								variant="body2"
+								component={RouterLink}
+								to="/signup"
+							>
+								{i18n.t("login.buttons.register")}
+							</Link>
+						</Grid>
+					</Grid> */}
 				</form>
+
 				<IconButton color="primary"
-						onClick={() => openInNewTab(`https://wa.me/${process.env.REACT_APP_NUMBER_SUPPORT}`)}>
+						onClick={() => openInNewTab(`https://wa.me/5518996060568`)}>
 						 <WhatsAppIcon style={{ color: "#3e5f3a" }} />
-					</IconButton>
-		{/*<Typography variant="caption" className={classes.supportText}><b>Entre em contato!</b></Typography>*/}
+				</IconButton>
+			
 			</div>
+			<Box mt={8}><Copyright /></Box>
 		</Container>
 		</div>
 	);
 };
 
 export default Login;
-
-			
-			
-			

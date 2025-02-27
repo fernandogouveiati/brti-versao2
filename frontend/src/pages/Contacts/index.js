@@ -302,13 +302,15 @@ const Contacts = () => {
           >
             {i18n.t("contacts.buttons.import")}
           </Button>*/}
-          <Button
+
+          {/*<Button
             variant="contained"
             color="primary"
             onClick={handleOpenImportModal}
           >
             {i18n.t("contacts.buttons.import")}
-          </Button>
+          </Button>*/}
+          
           <Button
             variant="contained"
             color="primary"

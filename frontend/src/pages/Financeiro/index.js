@@ -198,7 +198,7 @@ const Invoices = () => {
               <TableCell align="center">{i18n.t("invoices.value")}</TableCell>
               <TableCell align="center">{i18n.t("invoices.dueDate")}</TableCell>
               <TableCell align="center">{i18n.t("invoices.status")}</TableCell>
-              <TableCell align="center">{i18n.t("invoices.action")}</TableCell>
+				  {/*<TableCell align="center">{i18n.t("invoices.action")}</TableCell>*/}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -210,7 +210,7 @@ const Invoices = () => {
                   <TableCell style={{ fontWeight: 'bold' }} align="center">{invoices.value.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</TableCell>
                   <TableCell align="center">{moment(invoices.dueDate).format("DD/MM/YYYY")}</TableCell>
                   <TableCell style={{ fontWeight: 'bold' }} align="center">{rowStatus(invoices)}</TableCell>
-                  <TableCell align="center">
+					  {/*<TableCell align="center">*
                     {rowStatus(invoices) !== i18n.t("invoices.paid") ?
                       <Button
                         size="small"
@@ -223,13 +223,12 @@ const Invoices = () => {
                       <Button
                         size="small"
                         variant="outlined" 
-                        /* color="secondary"
-                        disabled */
+                        
                       >
                         {i18n.t("invoices.PAID")}
                       </Button>}
 
-                  </TableCell>
+					  </TableCell>*/}
                 </TableRow>
               ))}
               {loading && <TableRowSkeleton columns={4} />}

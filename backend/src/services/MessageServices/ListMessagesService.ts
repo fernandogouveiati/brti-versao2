@@ -43,14 +43,14 @@ const ListMessagesService = async ({
     }
   };
 
-  if (queues.length > 0) {
+  /*if (queues.length > 0) {
     options.where["queueId"] = {
       [Op.or]: {
         [Op.in]: queues,
         [Op.eq]: null
       }
     };
-  }
+  }*/
 
   const { count, rows: messages } = await Message.findAndCountAll({
     ...options,

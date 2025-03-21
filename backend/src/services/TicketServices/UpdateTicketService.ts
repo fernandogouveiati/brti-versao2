@@ -125,7 +125,7 @@ const UpdateTicketService = async ({
           const ratingTxt = ratingMessage || "";
           let bodyRatingMessage = `\u200e${ratingTxt}`;
           bodyRatingMessage +=
-            "*Pesquisa de Satisfação:*\n\nEm uma escala de 1 a 3, digite:\n\n*1* - Ruim 😕\n*2* - Regular 😃\n*3* - Ótimo 🤩";
+            "*Pesquisa de Satisfação:*\n\nEm uma escala de 1 a 3, digite:\n\n*1* - Ruim 😕\n*2* - Bom 😃\n*3* - Ótimo 🤩";
           await SendWhatsAppMessage({ body: bodyRatingMessage, ticket });
 
           await ticketTraking.update({
@@ -182,7 +182,7 @@ const UpdateTicketService = async ({
         const wbot = await GetTicketWbot(ticket);
 
         const translatedMessage = {
-          'pt': "*Mensagem automática*:\n*" + oldUserName + "* transferiu você para: *" + queue?.name + "*. Por favor aguarde!",
+          'pt': "*" + oldUserName + "* transferiu você para *" + queue?.name + "*. Por favor aguarde!",
           'en': "*Automatic message*:\nYou have been transferred to the *" + queue?.name + "* department\nplease wait, we'll assist you soon!",
           'es': "*Mensaje automático*:\nHas sido transferido al departamento *" + queue?.name + "*\npor favor espera, ¡te atenderemos pronto!"
         }
@@ -204,7 +204,7 @@ const UpdateTicketService = async ({
           const nome = await ShowUserService(ticketData.userId);
 
           const translatedMessage = {
-              'pt': "*Mensagem automática*:\n*" + oldUserName + "* transferiu você para o atendente *" + nome.name + "*. Por favor aguarde!",
+              'pt': "*" + oldUserName + "* transferiu você para o atendente *" + nome.name + "*. Por favor aguarde!",
               'en': "*Automatic message*:\nYou have been transferred to agent *" + nome.name + "*\nplease wait, we'll assist you soon!",
               'es': "*Mensaje automático*:\nHas sido transferido al agente *" + nome.name + "*\npor favor espera, ¡te atenderemos pronto!"
           }
@@ -227,7 +227,7 @@ const UpdateTicketService = async ({
             const nome = await ShowUserService(ticketData.userId);
 
             const translatedMessage = {
-              'pt': "*Mensagem automática*:\n*" + oldUserName + "* transferiu você para: *" + queue?.name + "* e contará com a presença de *" + nome.name + "*. Por favor aguarde!",
+              'pt': "*" + oldUserName + "* transferiu você para *" + queue?.name + "* e contará com o atendimento de *" + nome.name + "*. Por favor aguarde!",
               'en': "*Automatic message*:\nYou have been transferred to the *" + queue?.name + "* department and will be assisted by *" + nome.name + "*\nplease wait, we'll assist you soon!",
               'es': "*Mensaje automático*:\nHas sido transferido al departamento *" + queue?.name + "* y serás atendido por *" + nome.name + "*\npor favor espera, ¡te atenderemos pronto!"
             }
@@ -247,7 +247,7 @@ const UpdateTicketService = async ({
               const wbot = await GetTicketWbot(ticket);
 
               const translatedMessage = {
-                'pt': "*Mensagem automática*:\n*" + oldUserName + "* transferiu você para: *" + queue?.name + "*. Por favor aguarde!",
+                'pt': "*" + oldUserName + "* transferiu você para *" + queue?.name + "*. Por favor aguarde!",
                 'en': "*Automatic message*:\nYou have been transferred to the *" + queue?.name + "* department\nplease wait, we'll assist you soon!",
                 'es': "*Mensaje automático*:\nHas sido transferido al departamento *" + queue?.name + "*\npor favor espera, ¡te atenderemos pronto!"
               }
